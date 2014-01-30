@@ -30,9 +30,11 @@ messages:
 
       Best,
       <Name>.
-  - to: bdamos@vt.edu
+  - to: [bdamos@vt.edu, test.multiple_recipients@test.com]
     cc: test.cc@test.com
     bcc: test.bcc@test.com
     subject: "yaml-mailer: Testing CC/BCC."
     contents: |
       Hi again Brandon, just testing out CC/BCC capabilities.
+      Note that to, cc, and bcc fields support multiple recipients
+      by using a list.

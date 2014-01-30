@@ -24,7 +24,7 @@ Sending message.
   To: bdamos@vt.edu
   Subject: yaml-mailer: Hi Brandon.
 Sending message.
-  To: bdamos@vt.edu
+  To: bdamos@vt.edu,test.multiple_recipients@test.com
   CC: test.cc@test.com
   BCC: test.bcc@test.com
   Subject: yaml-mailer: Testing CC/BCC.
