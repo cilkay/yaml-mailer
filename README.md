@@ -31,5 +31,4 @@ Sending message.
 All messages sent successfully.
 ```
 
-
-example: https://github.com/bamos/yaml-mailer/blob/master/example.yaml
+[example]: https://github.com/bamos/yaml-mailer/blob/master/example.yaml
