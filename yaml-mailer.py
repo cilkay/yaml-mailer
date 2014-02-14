@@ -56,9 +56,7 @@ for msg in messages:
   multi_msg['To'] = ",".join(msg['to'])
   multi_msg['Subject'] = msg['subject']
   if 'cc' in msg: multi_msg['CC'] = ",".join(msg['cc'])
-  text = MIMEText(msg['contents'])
-  #text.add_header("Content-Disposition", "inline")
-  multi_msg.attach(text)
+  multi_msg.attach(MIMEText(msg['contents']))
 
   print("Sending message.")
   print("  To: " + ",".join(msg['to']))
