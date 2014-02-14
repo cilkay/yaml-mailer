@@ -8,28 +8,40 @@
 import argparse
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from os.path import expanduser
 import smtplib
 import sys
 import yaml
 
+def die(msg, code=42): print('Error: ' + msg); sys.exit(code);
+def check_key(tag, dict_obj, key):
+  if key not in dict_obj:
+    die(tag + " does not contain '" + key + "' key.")
+
 parser = argparse.ArgumentParser(description='Mail people with YAML.')
-parser.add_argument('yaml_file', type=str)
+parser.add_argument('messages_yaml', type=str)
+parser.add_argument('--config', type=str,
+    default=expanduser("~")+"/.yaml-mailer.yaml")
 args = parser.parse_args()
 
-f = open(args.yaml_file, 'r')
-yaml_contents = yaml.load(f)
-f.close()
+with open(args.messages_yaml, 'r') as f: yaml_contents = yaml.load(f)
+with open(args.config, 'r') as f: yaml_config = yaml.load(f)
 
-smtp = yaml_contents['smtp']
-messages = yaml_contents['messages']
+check_key("Yaml config", yaml_config, 'smtp')
+smtp = yaml_config['smtp']
+for key in ['server', 'port', 'tls', 'user', 'password']:
+  check_key("Yaml config - smtp", smtp, key)
 
 server = smtplib.SMTP(smtp['server'], smtp['port'])
 server.ehlo_or_helo_if_needed()
 if smtp['tls']: server.starttls()
 server.login(smtp['user'], smtp['password'])
 
+check_key("Yaml file", yaml_contents, 'messages')
+messages = yaml_contents['messages']
 for msg in messages:
-  # TODO: Check that every expected field is in the message.
+  for key in ['to', 'subject', 'contents']:
+    check_key('Message with contents: ' + str(msg), msg, key)
 
   if 'attach' in msg:
     print("Error: Attachments not supported. Not sending.")

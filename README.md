@@ -14,8 +14,14 @@ Use cases can include the following, all with individualized messages.
 + Following up with a lot of people.
 + Contacting many companies with cover letters and job applications.
 
+# Configuration.
+By default, configuration is expected to be in `~/.yaml-mailer.yaml`,
+but can be changed with the `--config` flag.
+See the [example configuration][example-conf]
+
 # Example.
-See [example.yaml][example] for an example to get started with!
+See [example-messages.yaml][example-messages] for an example to
+get started with!
 
 ```
 $ ./yaml-mailer.py example.yaml
@@ -24,11 +30,12 @@ Sending message.
   To: bdamos@vt.edu
   Subject: yaml-mailer: Hi Brandon.
 Sending message.
-  To: bdamos@vt.edu,test.multiple_recipients@test.com
-  CC: test.cc@test.com
-  BCC: test.bcc@test.com
+  To: bdamos@vt.edu,bdamos+other-to@vt.edu
+  CC: bdamos+cc@vt.edu
+  BCC: bdamos+bcc@vt.edu
   Subject: yaml-mailer: Testing CC/BCC.
 All messages sent successfully.
 ```
 
-[example]: https://github.com/bamos/yaml-mailer/blob/master/example.yaml
+[example-messages]: https://github.com/bamos/yaml-mailer/blob/master/example-messages.yaml
+[example-conf]: https://github.com/bamos/yaml-mailer/blob/master/example-conf.yaml

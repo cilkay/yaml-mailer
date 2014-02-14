@@ -1,0 +1,20 @@
+# yaml-mailer - Sample configuration.
+# Brandon Amos <http://bamos.io>
+
+# SMTP settings.
+smtp:
+  # Example showing gmail's SMTP settings, but any server can be used.
+  server: smtp.gmail.com
+  port: 587
+
+  # Change both 'user' and 'from'.
+  # With gmail, these are the same, but other SMTP servers may
+  # behave differently.
+  user: user@domain.com
+  from: user@domain.com
+
+  # With gmail, obtain a Google application-specific password from:
+  # https://www.google.com/settings/account
+  password: password
+
+  tls: True

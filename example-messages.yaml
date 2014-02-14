@@ -1,0 +1,22 @@
+# yaml-mailer - example.yaml
+# Brandon Amos <http://bamos.io>
+
+# List of messages to send.
+messages:
+  - to: bdamos@vt.edu
+    subject: "yaml-mailer: Hi Brandon."
+    contents: | # Note the '|' for multi-line support.
+      Hi Brandon,
+
+      I'm trying out http://github.com/bamos/yaml-mailer!
+
+      Best,
+      <Name>.
+  - to: [bdamos@vt.edu, bdamos+other-to@vt.edu]
+    cc: bdamos+cc@vt.edu
+    bcc: bdamos+bcc@vt.edu
+    subject: "yaml-mailer: Testing CC/BCC."
+    contents: |
+      Hi again Brandon, just testing out CC/BCC capabilities.
+      Note that to, cc, and bcc fields support multiple recipients
+      by using a list.
