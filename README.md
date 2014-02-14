@@ -24,7 +24,7 @@ See [example-messages.yaml][example-messages] for an example to
 get started with!
 
 ```
-$ ./yaml-mailer.py example.yaml
+$ ./yaml-mailer.py example-messages.yaml
 
 Sending message.
   To: bdamos@vt.edu
