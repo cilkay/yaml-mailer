@@ -5,10 +5,12 @@
 messages:
   - to: bdamos@vt.edu
     subject: "yaml-mailer: Hi Brandon."
+    attach: "yaml-mailer.py"
     contents: | # Note the '|' for multi-line support.
       Hi Brandon,
 
       I'm trying out http://github.com/bamos/yaml-mailer!
+      See attached for the short source.
 
       Best,
       <Name>.

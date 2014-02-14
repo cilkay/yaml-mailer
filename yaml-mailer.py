@@ -6,9 +6,11 @@
 # Brandon Amos <http://bamos.io>
 
 import argparse
+from email.encoders import encode_base64
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from os.path import expanduser
+from email.mime.base import MIMEBase
+from os.path import basename,expanduser
 import smtplib
 import sys
 import yaml
@@ -43,11 +45,8 @@ for msg in messages:
   for key in ['to', 'subject', 'contents']:
     check_key('Message with contents: ' + str(msg), msg, key)
 
-  if 'attach' in msg:
-    print("Error: Attachments not supported. Not sending.")
-    sys.exit(42)
-
-  for field in ['to', 'cc', 'bcc']:
+  # Make non-list fields lists.
+  for field in ['to', 'cc', 'bcc', 'attach']:
     if field in msg and not isinstance(msg[field], list):
       msg[field] = [msg[field]]
 
@@ -58,11 +57,21 @@ for msg in messages:
   if 'cc' in msg: multi_msg['CC'] = ",".join(msg['cc'])
   multi_msg.attach(MIMEText(msg['contents']))
 
+  if 'attach' in msg:
+    for f_name in msg['attach']:
+      part = MIMEBase('application', "octet-stream")
+      with open(f_name, 'rb') as f: part.set_payload(f.read())
+      encode_base64(part)
+      part.add_header('Content-Disposition',
+          'attachment; filename="' + basename(f_name) + '"')
+      multi_msg.attach(part)
+
   print("Sending message.")
   print("  To: " + ",".join(msg['to']))
   if 'cc' in msg: print("  CC: " + ",".join(msg['cc']))
   if 'bcc' in msg: print("  BCC: " + ",".join(msg['bcc']))
   print("  Subject: " + msg['subject'])
+  if 'attach' in msg: print("  Attach: " + ",".join(msg['attach']))
   server.sendmail(smtp['from'], msg['to'], multi_msg.as_string())
   if 'bcc' in msg:
     for bcc in msg['bcc']:

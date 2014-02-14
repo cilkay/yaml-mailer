@@ -29,6 +29,7 @@ $ ./yaml-mailer.py example.yaml
 Sending message.
   To: bdamos@vt.edu
   Subject: yaml-mailer: Hi Brandon.
+  Attach: yaml-mailer.py
 Sending message.
   To: bdamos@vt.edu,bdamos+other-to@vt.edu
   CC: bdamos+cc@vt.edu
