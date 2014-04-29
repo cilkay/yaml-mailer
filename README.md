@@ -15,7 +15,7 @@ Use cases can include the following, all with individualized messages.
 + Contacting many companies with cover letters and job applications.
 
 # Configuration.
-By default, configuration is expected to be in `~/.yaml-mailer.yaml`,
+By default, configuration is expected to be in `~/.mailer.yaml`,
 but can be changed with the `--config` flag.
 See the [example configuration][example-conf]
 

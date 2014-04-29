@@ -23,7 +23,7 @@ def check_key(tag, dict_obj, key):
 parser = argparse.ArgumentParser(description='Mail people with YAML.')
 parser.add_argument('messages_yaml', type=str)
 parser.add_argument('--config', type=str,
-    default=expanduser("~")+"/.yaml-mailer.yaml")
+    default=expanduser("~")+"/.mailer.yaml")
 parser.add_argument('--dry-run', action='store_true')
 args = parser.parse_args()
 
