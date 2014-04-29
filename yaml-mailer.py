@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.3
+#!/usr/bin/env python3
 #
 # yaml-mailer.py
 # 2014.01.30
@@ -24,6 +24,7 @@ parser = argparse.ArgumentParser(description='Mail people with YAML.')
 parser.add_argument('messages_yaml', type=str)
 parser.add_argument('--config', type=str,
     default=expanduser("~")+"/.yaml-mailer.yaml")
+parser.add_argument('--dry-run', action='store_true')
 args = parser.parse_args()
 
 with open(args.messages_yaml, 'r') as f: yaml_contents = yaml.load(f)
@@ -72,10 +73,11 @@ for msg in messages:
   if 'bcc' in msg: print("  BCC: " + ",".join(msg['bcc']))
   print("  Subject: " + msg['subject'])
   if 'attach' in msg: print("  Attach: " + ",".join(msg['attach']))
-  server.sendmail(smtp['from'], msg['to'], multi_msg.as_string())
-  if 'bcc' in msg:
-    for bcc in msg['bcc']:
-      server.sendmail(smtp['from'], bcc, multi_msg.as_string())
+  if not args.dry_run:
+    server.sendmail(smtp['from'], msg['to'], multi_msg.as_string())
+    if 'bcc' in msg:
+      for bcc in msg['bcc']:
+        server.sendmail(smtp['from'], bcc, multi_msg.as_string())
 
 print("All messages sent successfully.")
 server.close()
