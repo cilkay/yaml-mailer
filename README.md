@@ -9,11 +9,6 @@ This is useful to help organize email composition if you want
 to email a lot of people similar messages and add
 notes of individualization to each message.
 
-Use cases can include the following, all with individualized messages.
-+ Thanking everybody you possibly know, just because.
-+ Following up with a lot of people.
-+ Contacting many companies with cover letters and job applications.
-
 # Configuration.
 By default, configuration is expected to be in `~/.mailer.yaml`,
 but can be changed with the `--config` flag.
