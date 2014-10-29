@@ -12,7 +12,7 @@ notes of individualization to each message.
 # Configuration.
 By default, configuration is expected to be in `~/.mailer.yaml`,
 but can be changed with the `--config` flag.
-See the [example configuration][example-conf]
+See the [example configuration][example-conf].
 
 # Example.
 See [example-messages.yaml][example-messages] for an example to
