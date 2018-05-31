@@ -18,3 +18,13 @@ smtp:
   password: password
 
   tls: True
+
+# The original script assumed that messages and attachments
+# were in the same path as yaml-mailer.py. That is not a safe
+# assumption to make. Messages and attachments would usually
+# be in the same directory but the configuration below
+# gives us the flexibility to put them in different directories.
+
+paths:
+  messages_path: /path/to/messages/
+  attachments_path: /path/to/messages/
